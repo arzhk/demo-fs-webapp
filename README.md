@@ -72,7 +72,7 @@ A full-stack web application for a question/answer system, enabling users to cre
      ```
    - In `/frontend/.env`, add:
      ```env
-     NEXT_PUBLIC_API_URL=http://localhost:5000
+     NEXT_PUBLIC_API_URL=http://localhost:5000/api/questions
      ```
 
 5. **Run the Application**:
