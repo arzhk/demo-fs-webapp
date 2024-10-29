@@ -48,16 +48,18 @@ function QuestionTable(props: QuestionTableProps) {
         </TableRow>
         {props?.data?.map((question) => (
           <TableRow key={question._recordId}>
-            <TableCell>
+            <TableCell className="min-w-[64px]">
               <div className="pl-4 min-h-[48px] flex items-center">
                 <Checkbox onCheckedChange={() => handleSelect(question.id)} checked={selected.includes(question.id)} />
               </div>
             </TableCell>
-            <TableCell className="font-medium">
+            <TableCell className="font-medium w-full">
               <Link href={`/${question.id}`}>{question.question}</Link>
             </TableCell>
-            <TableCell>{question.assignedTo && <Tag className="bg-accent">{question.assignedTo}</Tag>}</TableCell>
-            <TableCell>
+            <TableCell className="min-w-[200px]">
+              {question.assignedTo && <Tag className="bg-accent">{question.assignedTo}</Tag>}
+            </TableCell>
+            <TableCell className="min-w-[200px]">
               <Tag className={question.answer ? "bg-success" : "bg-destructive"}>
                 {question.answer ? "Answered" : "Unanswered"}
               </Tag>
