@@ -105,19 +105,18 @@ A full-stack web application for a question/answer system, enabling users to cre
 
 ```
 qa-platform/
-├── backend/               # Express.js backend code
+├── backend/               # Express backend code
 │   ├── src/
 │   │   ├── controllers/   # Business logic
 │   │   ├── routes/        # API routes
-│   │   └── index.js       # Main server file
+│   │   └── index.ts       # Main server file
 │   ├── .env               # Environment variables for backend
 │   └── package.json       # Backend dependencies and scripts
 │
-├── frontend/              # React.js frontend code
+├── frontend/              # React frontend code
 │   ├── src/
-│   │   ├── components/    # React components
-│   │   ├── api/           # API methods to connect to backend
-│   │   └── App.js         # Main entry point for React app
+│   │   ├── app/           # Main app entry
+│   │   └── components/    # React components
 │   ├── .env               # Environment variables for frontend
 │   └── package.json       # Frontend dependencies and scripts
 │
