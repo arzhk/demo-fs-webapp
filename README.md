@@ -43,8 +43,8 @@ A full-stack web application designed to streamline GDPR compliance questionnair
 1. **Clone the repository:**
 
    ```bash
-   git clone https://github.com/yourusername/gdpr-qa-platform.git
-   cd gdpr-qa-platform
+   git clone https://github.com/yourusername/demo-fs-webapp.git
+   cd demo-fs-webapp
    ```
 
 2. **Backend Setup**:
