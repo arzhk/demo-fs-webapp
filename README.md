@@ -1,6 +1,6 @@
-# **GDPR Compliance Q&A Platform**
+# **Q&A Platform**
 
-A full-stack web application designed to streamline GDPR compliance questionnaires, enabling users to create, manage, and delegate questions and answers efficiently. The application includes CRUD functionality, bulk assignment, custom properties/tags, and filtering/search capabilities. This project uses **Express.js** for the backend with **Airtable** as the database and **React.js** with **Material-UI** for the frontend interface.
+A full-stack web application designed to streamline GDPR compliance questionnaires, enabling users to create, manage, and delegate questions and answers efficiently. The application includes CRUD functionality, bulk assignment, custom properties/tags, and filtering/search capabilities. This project uses **Express.js** for the backend with **Airtable** as the database and **React.js** with **Tailwind CSS** for the frontend interface.
 
 ---
 
@@ -23,12 +23,6 @@ A full-stack web application designed to streamline GDPR compliance questionnair
 - **Custom Properties/Tags** for questions
 - **Fuzzy Search** and **Advanced Filtering** by assigned user and properties
 - **History Tracking** for question updates
-
-## **Demo**
-
-- [Live Demo](#) (if deployed)
-- Login: `test@example.com`
-- Password: `password123`
 
 ## **Tech Stack**
 
@@ -79,7 +73,7 @@ A full-stack web application designed to streamline GDPR compliance questionnair
      ```
    - In `/frontend/.env`, add:
      ```env
-     REACT_APP_BACKEND_URL=http://localhost:5000
+     NEXT_PUBLIC_API_URL=http://localhost:5000
      ```
 
 5. **Run the Application**:
@@ -111,16 +105,14 @@ A full-stack web application designed to streamline GDPR compliance questionnair
 ## **Project Structure**
 
 ```
-gdpr-qa-platform/
+qa-platform/
 ├── backend/               # Express.js backend code
 │   ├── src/
 │   │   ├── controllers/   # Business logic
-│   │   ├── models/        # Airtable integrations
 │   │   ├── routes/        # API routes
 │   │   └── index.js       # Main server file
 │   ├── .env               # Environment variables for backend
-│   ├── package.json       # Backend dependencies and scripts
-│   └── README.md          # Backend-specific documentation
+│   └── package.json       # Backend dependencies and scripts
 │
 ├── frontend/              # React.js frontend code
 │   ├── src/
@@ -128,10 +120,8 @@ gdpr-qa-platform/
 │   │   ├── api/           # API methods to connect to backend
 │   │   └── App.js         # Main entry point for React app
 │   ├── .env               # Environment variables for frontend
-│   ├── package.json       # Frontend dependencies and scripts
-│   └── README.md          # Frontend-specific documentation
+│   └── package.json       # Frontend dependencies and scripts
 │
-├── .gitignore             # Ignore node_modules, .env files
 └── README.md              # Root documentation
 ```
 
@@ -159,20 +149,9 @@ gdpr-qa-platform/
   {
     "question": "Is data encrypted?",
     "createdBy": "user@example.com",
-    "assignedTo": "assigned@example.com",
-    "properties": "section:Security,vendor:ABC Corp",
-    "questionDescription": "Encryption details for GDPR compliance"
   }
   ```
 
 ---
 
-## **Future Improvements**
-
-- **Advanced Search**: Integrate a semantic search model using NLP techniques.
-- **Enhanced Question History**: Store past answer updates.
-- **AI-Powered Responses**: Use a model like OpenAI’s GPT for auto-generating answers.
-
----
-
-Feel free to reach out for any questions or further assistance with the setup. Happy coding!
+Feel free to reach out for any questions or further assistance with the setup.

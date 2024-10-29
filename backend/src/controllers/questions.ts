@@ -3,7 +3,8 @@ import base from "../airtable";
 import { handleValidationErrors } from "../utils/validationHandler";
 import { CustomError } from "../middleware/errorHandler";
 
-interface QuestionFields {
+export interface QuestionFields {
+  id: string;
   _recordId: string;
   companyName: string;
   _companyId: number;
@@ -20,7 +21,7 @@ interface QuestionFields {
   description: string;
 }
 
-interface AirtableRecord {
+export interface AirtableRecord {
   id: string;
   fields: QuestionFields;
 }
@@ -57,7 +58,9 @@ export const createQuestion = async (req: Request, res: Response, next: NextFunc
       },
     ])) as unknown as AirtableRecord[];
 
-    res.status(201).json(record);
+    const formattedRecord = formatAirtableRecord(record);
+
+    res.status(201).json(formattedRecord);
   } catch (error) {
     console.error("Error creating question:", error);
     next(error);
@@ -66,7 +69,7 @@ export const createQuestion = async (req: Request, res: Response, next: NextFunc
 
 export const getQuestions = async (req: Request, res: Response, next: NextFunction) => {
   try {
-    const records = (await base("questions").select().all()) as unknown as AirtableRecord[];
+    const records = await base("questions").select().all();
 
     const questions = records.map((record) => ({
       id: record.id,
@@ -156,6 +159,42 @@ export const updateQuestion = async (req: Request, res: Response, next: NextFunc
   }
 };
 
+export const assignQuestions = async (req: Request, res: Response, next: NextFunction) => {
+  try {
+    if (handleValidationErrors(req, next)) return;
+
+    const { questionIds, assignedTo } = req.body;
+
+    if (!Array.isArray(questionIds) || questionIds.length === 0) {
+      const error = new Error("questionIds must be a non-empty array") as CustomError;
+      error.statusCode = 400;
+      return next(error);
+    }
+
+    const updatedRecords = await Promise.all(
+      questionIds.map(async (id: string) => {
+        const [updatedRecord] = (await base("questions").update([
+          {
+            id: id,
+            fields: {
+              assignedTo,
+              updatedAt: new Date().toISOString(),
+            },
+          },
+        ])) as unknown as AirtableRecord[];
+        return updatedRecord;
+      })
+    );
+
+    const formattedRecords = updatedRecords.map(formatAirtableRecord);
+
+    res.status(200).json(formattedRecords);
+  } catch (error) {
+    console.error("Error assigning questions:", error);
+    next(error);
+  }
+};
+
 export const deleteQuestion = async (req: Request, res: Response, next: NextFunction) => {
   try {
     const { id } = req.params;
@@ -172,14 +211,21 @@ export const searchQuestions = async (req: Request, res: Response, next: NextFun
     const { q } = req.query;
     const searchQuery = (q as string).toLowerCase();
 
-    const records = await base("questions").select().all();
-    const filteredRecords = records.filter((record) => {
-      const questionText = typeof record.fields.Question === "string" ? record.fields.Question.toLowerCase() : "";
-      const answerText = typeof record.fields.Answer === "string" ? record.fields.Answer.toLowerCase() : "";
-      return questionText.includes(searchQuery) || answerText.includes(searchQuery);
-    });
+    const records = await base("questions")
+      .select({
+        sort: [{ field: "createdAt", direction: "desc" }],
+        filterByFormula: searchQuery
+          ? `OR(SEARCH(LOWER("${searchQuery}"), LOWER({Question})), SEARCH(LOWER("${searchQuery}"), LOWER({Answer})))`
+          : undefined,
+      })
+      .all();
 
-    res.status(200).json(filteredRecords);
+    const questions = records.map((record) => ({
+      id: record.id,
+      ...record.fields,
+    }));
+
+    res.status(200).json(questions);
   } catch (error) {
     console.error("Error searching questions:", error);
     next(error);
