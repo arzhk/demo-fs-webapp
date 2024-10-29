@@ -1,6 +1,6 @@
 # **Q&A Platform**
 
-A full-stack web application designed to streamline GDPR compliance questionnaires, enabling users to create, manage, and delegate questions and answers efficiently. The application includes CRUD functionality, bulk assignment, custom properties/tags, and filtering/search capabilities. This project uses **Express.js** for the backend with **Airtable** as the database and **React.js** with **Tailwind CSS** for the frontend interface.
+A full-stack web application for a question/answer system, enabling users to create, manage, and delegate questions and answers efficiently. The application includes CRUD functionality, bulk assignment, custom properties/tags, and filtering/search capabilities. This project uses **Express.js** for the backend with **Airtable** as the database and **React.js** with **Tailwind CSS** for the frontend interface.
 
 ---
 
