@@ -66,7 +66,7 @@ A full-stack web application for a question/answer system, enabling users to cre
    - Create `.env` files in both the `backend` and `frontend` folders.
    - In `/backend/.env`, add:
      ```env
-     AIRTABLE_API_KEY=<your_airtable_api_key>
+     AIRTABLE_ACCESS_TOKEN=<your_airtable_access_token>
      AIRTABLE_BASE_ID=<your_airtable_base_id>
      PORT=5000
      ```
