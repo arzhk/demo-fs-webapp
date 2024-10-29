@@ -7,7 +7,6 @@ A full-stack web application designed to streamline GDPR compliance questionnair
 ## **Table of Contents**
 
 - [Features](#features)
-- [Demo](#demo)
 - [Tech Stack](#tech-stack)
 - [Getting Started](#getting-started)
 - [Project Structure](#project-structure)
