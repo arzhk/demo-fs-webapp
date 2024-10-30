@@ -10,9 +10,9 @@ import { cn } from "@/lib/utils";
 import { useParams } from "next/navigation";
 import React, { useState } from "react";
 import { useRouter } from "next/navigation";
-import { AssignQuestionsDialog } from "../page";
+import AssignQuestionsDialog from "@/components/AssignQuestionsDialog";
 
-function page() {
+function QuestionPage() {
   const { questions, refetchQuestions } = useQuestions();
   const { questionid } = useParams();
   const data = questions.find((question) => question.id === questionid);
@@ -178,4 +178,4 @@ const StatusRow = (props: { children: React.ReactNode }) => (
   <div className="flex items-center justify-between w-full gap-4">{props.children}</div>
 );
 
-export default page;
+export default QuestionPage;

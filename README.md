@@ -89,10 +89,12 @@ A full-stack web application for a question/answer system, enabling users to cre
      ```bash
      # Backend
      cd backend
+     npm run build
      npm start
 
      # Frontend
      cd ../frontend
+     npm run build
      npm start
      ```
 

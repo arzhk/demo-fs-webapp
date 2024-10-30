@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import P from "@/components/typography/P";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Table, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
